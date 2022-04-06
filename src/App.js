@@ -6,7 +6,7 @@ function App() {
   const [subreddit, setSubreddit] = useState("webdev");
 
   useEffect(() => {
-    fetch("https://www.reddit.com/r/webdev.json").then((res) => {
+    fetch("https://www.reddit.com/r/" + subreddit + ".json").then((res) => {
       if (res.status != 200) {
         console.log("Could not retrieve JSON");
         return;
@@ -24,7 +24,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input type="text" className="input" value="webdev"></input>
+        <input
+          type="text"
+          className="input"
+          value={subreddit}
+          onChange={(e) => setSubreddit(e.target.value)}
+        ></input>
       </header>
       <div className="articles">
         {articles != null
